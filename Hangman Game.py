@@ -1,201 +1,217 @@
+import os
+
 HANGMAN = [
-"""
------
-|   |
-|
-|
-| 
-|
-| 
-|
-|
---------
-""",
-"""
------
-|   |
-|   0
-|
-|
-|
-|
-|
-|
---------
-""",
-"""
------
-|   |
-|   0
-|  -+-
-|
-|
-|
-|
-|
---------
-""",
-"""
------
-|   |
-|   0
-| /-+-
-|
-|
-|
-|
-|
---------
-""",
-"""
------
-|   |
-|   0
-| /-+-\ 
-|
-|
-|
-|
-|
---------
-""",
-"""
------
-|   |
-|   0
-| /-+-\ 
-|   | 
-|
-|
-|
-|
---------
-""",
-"""
------
-|   |
-|   0
-| /-+-\ 
-|   | 
-|   | 
-|
-|
-|
---------
-""",
-"""
------
-|   |
-|   0
-| /-+-\ 
-|   | 
-|   | 
-|  |
-|
-|
---------
-""",
-"""
------
-|   |
-|   0
-| /-+-\ 
-|   | 
-|   | 
-|  | 
-|  | 
-|
---------
-""",
-"""
------
-|   |
-|   0
-| /-+-\ 
-|   | 
-|   | 
-|  | | 
-|  | 
-|
---------
-""",
-"""
------
-|   |
-|   0
-| /-+-\ 
-|   | 
-|   | 
-|  | | 
-|  | | 
-|
---------
+        """
+        -----
+        |   |
+        |
+        |
+        | 
+        |
+        | 
+        |
+        |
+        --------
+        """,
+        """
+        -----
+        |   |
+        |   0
+        |
+        |
+        |
+        |
+        |
+        |
+        --------
+        """,
+        """
+        -----
+        |   |
+        |   0
+        |  -+-
+        |
+        |
+        |
+        |
+        |
+        --------
+        """,
+        """
+        -----
+        |   |
+        |   0
+        | /-+-
+        |
+        |
+        |
+        |
+        |
+        --------
+        """,
+        """
+        -----
+        |   |
+        |   0
+        | /-+-\ 
+        |
+        |
+        |
+        |
+        |
+        --------
+        """,
+        """
+        -----
+        |   |
+        |   0
+        | /-+-\ 
+        |   | 
+        |
+        |
+        |
+        |
+        --------
+        """,
+        """
+        -----
+        |   |
+        |   0
+        | /-+-\ 
+        |   | 
+        |   | 
+        |
+        |
+        |
+        --------
+        """,
+        """
+        -----
+        |   |
+        |   0
+        | /-+-\ 
+        |   | 
+        |   | 
+        |  |
+        |
+        |
+        --------
+        """,
+        """
+        -----
+        |   |
+        |   0
+        | /-+-\ 
+        |   | 
+        |   | 
+        |  | 
+        |  | 
+        |
+        --------
+        """,
+        """
+        -----
+        |   |
+        |   0
+        | /-+-\ 
+        |   | 
+        |   | 
+        |  | | 
+        |  | 
+        |
+        --------
+        """,
+        """
+        -----
+        |   |
+        |   0
+        | /-+-\ 
+        |   | 
+        |   | 
+        |  | | 
+        |  | | 
+        |
+        --------
 """]
-def Hangman():
+
+
+def game():
     false_guess = 0
-    empty = ""
+
     true = list()
     false = list()
-    print ("Welcome to the AkGame's high tech hangman game :).")
-    sentence = input("Please enter the word or sentence:")
-    print("*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n")
-    line = sentence.replace(" ", "/")
-    for i in range(len(line)):
-        if line[i] != "/":
-            empty += "-"
-        else:
-            empty += line[i]
-    print (empty)
-    count = list(line)
-    display = list(empty)
-    print ("If you wanna guess the whole sentence you have to type found")
-    guess = input("Your guess is?:")
-    while True:
-        if false_guess == 10:
-            false_guess = 0
-            lost()
-        if guess == "found":
-            final = input("woooow bold move. Lets see if it's true:")
-            if final == sentence:
-                print ("wooooow it's true. Are you kahin")
-                again()
-                break
-            else:
-                lost()
-        if len(guess) != 1:
-            print ("Your guess must be either a letter or found")
-            guess = input("Your guess is?:")
-        if guess in true:
-            print ("You already said {} and i displated it. Please type another thing".format(guess))
-            guess = input("Your guess is?:")
-        if guess in false:
-            print ("You already said {} and it was false. Please type another thing".format(guess))
-            guess = input("Your guess is?:")
-        elif guess in count:
-            for i in range(len(count)):
-                if guess == count[i]:
-                    display[i] = count[i]
-                else:
-                    pass
-            print ("".join(display))
+
+    print("Welcome to the AkGame's high tech hangman game :) \n")
+    sentence = input("Please enter a name: ").strip()
+    print(
+        "*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n*\n")
+
+    empty = list(sentence.replace(" ", "/"))
+
+    for char in range(len(empty)):
+        if empty[char] != "/":
+            empty[char] = "-"
+
+    state = "continue"
+
+    while state == "continue":
+
+        print("     ","".join(empty), end="\n\n")
+
+        guess = input("Enter your guess: ").strip()
+
+
+        if guess == sentence:
+            print("\nYou won the game. Congratulations\n")
+            state = "end"
+
+        elif false_guess == 11:
+            print("\nYou lost :(. Sorry\n")
+            state = "end"
+
+        elif "/" in sentence or sentence == "":
+            print("\nYour guess must consist of alpha numerical characters\n")
+
+        elif guess in true:
+            print(f"\nYou already said {guess} and i displayed it\n")
+
+        elif guess in false:
+            print(f"\nYou already said {guess} and it was false\n")
+
+        elif guess in sentence:
+
+            for i in range(len(sentence)):
+                if guess == sentence[i]:
+                    empty[i] = guess
+
             true.append(guess)
-            guess = input("Your guess is?:")
+
+            if "-" not in empty:
+                print("\nYou won the game. Congratulations\n")
+                state = "end"
+
         else:
-            print (HANGMAN[false_guess])
+            print(HANGMAN[false_guess])
             false_guess += 1
             false.append(guess)
-            guess = input("Your guess is?:")
-def again():
-    answer = input("Do you want to play again? yes or no:")
-    while True:
-        if answer == "yes":
-            Hangman()
-        if answer == "no":
-            break
-        else:
-            print ("please type eiter yes or no")
-            answer = input("Do you want to play again? yes or no:")
-def lost():
-    print ("you lost the game sorry :(")
+
     again()
-Hangman()
+
+
+def again():
+    while True:
+        answer = input("Do you want to play again? (y or n):")
+
+        if answer == "y":
+            os.system("cls" if os.name == "nt" else "clear")
+            game()
+
+        elif answer == "n":
+            exit()
+
+        else:
+            print("please type either y or n")
+
+
+if __name__ == '__main__':
+    game()
