@@ -1,7 +1,10 @@
 import random
+
 print ("Welcome to the AkTech's new hit game. The game is simple. You are going to enter a number, add to tour previous number and remember it.\n" \
        "For example if you said 3 you are going to type 3. on the next turn if you say 4 you are going to type 34. Good Luck :)\n")
+
 class Number:
+
     def __init__(self):
         self.Users()
     def Users(self):
@@ -84,7 +87,7 @@ class Number:
 
                     print (":( unfortunately that is wrong.\n")
 
-                    print (f"print ################################## {self.second_player} Wins !!! ##################################\n")
+                    print (f"################################## {self.second_player} Wins !!! ##################################\n")
 
                     try:
                         print (f"{self.second_player} remembered {self.second_number} digit number\n")
@@ -100,7 +103,7 @@ class Number:
 
                         if again == "Y" or again == "y":
 
-                             self.users()
+                            self.users()
 
                         elif again == "N" or again == "n":
 
@@ -150,7 +153,7 @@ class Number:
 
                     print (":( unfortunately that is wrong.\n")
 
-                    print (f"print ################################## {self.first_player} Wins !!! ##################################\n")
+                    print (f"################################## {self.first_player} Wins !!! ##################################\n")
 
                     print (f"{self.first_player} remembered {self.first_number} digit number\n")
 
@@ -160,11 +163,11 @@ class Number:
                         again = input("Do you want to play again? Y or N:")
                         print ("")
 
-                        if again == "Y" or again == "y":
+                        if again.lower() == "y":
 
                             self.users()
 
-                        elif again == "N" or again == "n":
+                        elif again.lower() == "n":
 
                             exit()
 
